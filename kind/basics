@@ -1,0 +1,13 @@
+1. Prerequistics
+  Docker
+  Go
+  kubectl
+  
+2. Installing Go
+  wget --no-check-certificate https://golang.org/dl/go1.15.3.linux-amd64.tar.gz (download latest file from https://golang.org/dl/)
+  tar -xvzf go1.15.3.linux-amd64.tar.gz /usr/local
+  export PATH=$PATH:/usr/local/go/bin
+  
+3. Installing Kind
+  GO111MODULE="on" go get sigs.k8s.io/kind@v0.9.0
+  export PATH=$PATH:~/go/bin 
