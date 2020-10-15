@@ -10,4 +10,27 @@
   
 3. Installing Kind
   GO111MODULE="on" go get sigs.k8s.io/kind@v0.9.0
-  export PATH=$PATH:~/go/bin 
+  export PATH=$PATH:~/go/bin
+  
+4. Install Kubectl
+  curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+
+5. Create cluster
+  kind create cluster # Default cluster context name is `kind`.
+  ...
+  kind create cluster --name kind-2
+  
+6. Get cluster details
+  kind get clusters
+  
+7. In order to interact with a specific cluster, you only need to specify the cluster name as a context in kubectl:
+  kubectl cluster-info --context kind-kind
+  kubectl cluster-info --context kind-kind-2
+  
+8. Delete cluster
+  kind delete cluster
+  
+9. Create cluster with config file
+  kind create cluster --config kind-config.yaml
