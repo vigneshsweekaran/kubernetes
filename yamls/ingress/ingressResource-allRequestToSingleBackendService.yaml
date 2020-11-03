@@ -1,0 +1,8 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-single-backend-service
+spec:
+  backend:
+    serviceName: test
+    servicePort: 80
