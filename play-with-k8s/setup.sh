@@ -7,7 +7,7 @@ kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.
 kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 
 # 3. Untaint master node to deploy pods in master node
-kubectl taint nodes node1 node-role.kubernetes.io/master:NoSchedule-
+kubectl taint nodes --all node-role.kubernetes.io/master:NoSchedule-
 
 # 4. Installing Helm version 3
 export VERIFY_CHECKSUM=false
