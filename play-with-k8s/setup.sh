@@ -12,3 +12,7 @@ kubectl taint nodes node1 node-role.kubernetes.io/master:NoSchedule-
 # 4. Installing Helm version 3
 export VERIFY_CHECKSUM=false
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+# 5. Configuring git username and mail
+git config user.email "play-with-kubernetes@gmail.com"
+git config user.name "play-with-kubernetes"
