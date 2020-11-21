@@ -17,6 +17,8 @@ To pass multiple parametrs to script
 ./setup.sh git helm untaint
 
 **PARAMETERS :**
-git --> To configure user name and mail for git
-helm --> To install helm
-untaint --> To create pods in single node cluster (By default we cannot create pods(any resources) in master node)
+|Parameter|Description| 
+|----|-----|
+|git|To configure user name and mail for git|
+|helm|To install helm|
+|untaint|To create pods in single node cluster (By default we cannot create pods(any resources) in master node)|
