@@ -12,11 +12,16 @@ if [[ "$*" == *git* ]]; then
     git config user.name "play-with-kubernetes"
 fi
 
-# Initializes cluster master node:
-kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
+#Creating kubernetes cluster using kubeadm
+output=`kubectl cluster-info`
+echo $output
+if [[ ! $output == *Kubernetes*master*is*running*at*https://*:6443* ]]; then
+    # Initializes cluster master node:
+    kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr 10.5.0.0/16
 
-# Initialize cluster networking:
-kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+    # Initialize cluster networking:
+    kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
+fi
 
 # Untaint master node to deploy pods in master node
 if [[ "$*" == *untaint* ]]; then
