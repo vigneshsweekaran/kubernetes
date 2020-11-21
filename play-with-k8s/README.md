@@ -13,6 +13,9 @@ To Configure user name and mail for git
 To untaint master node if using the single node cluster
 ./setup.sh untaint
 
+To pass multiple parametrs to script
+./setup.sh git helm untaint
+
 PARAMETERS :
 git --> To configure user name and mail for git
 helm --> To install helm
