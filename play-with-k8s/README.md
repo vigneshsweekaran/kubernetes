@@ -1,6 +1,6 @@
-This script will create the kuberentes cluster using kubeadm
+# Script to create a kuberentes cluster using kubeadm
 
-USAGE:
+**USAGE:**
 By default if we run the shell script it will create the kuberenetes cluster using kbueadm
 ./setup.sh
 
@@ -16,7 +16,7 @@ To untaint master node if using the single node cluster
 To pass multiple parametrs to script
 ./setup.sh git helm untaint
 
-PARAMETERS :
+**PARAMETERS :**
 git --> To configure user name and mail for git
 helm --> To install helm
 untaint --> To create pods in single node cluster (By default we cannot create pods(any resources) in master node)
