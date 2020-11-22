@@ -1,4 +1,4 @@
-# Craeting ceph cluster using Rook
+# Creating ceph cluster using Rook
 
 **Github :** https://github.com/rook/rook
 
