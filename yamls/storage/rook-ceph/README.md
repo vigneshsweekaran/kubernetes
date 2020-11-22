@@ -10,9 +10,6 @@ mon
 storage:
   useAllNodes: false
 nodes:
-- name: "kmaster.example.com" # kuberentes Node name
-  devices: # specific devices to use for storage can be specified for each node
-  - name: "sdb" # Newly added disk name in the node
 - name: "kworker1.example.com"
   devices: # specific devices to use for storage can be specified for each node
   - name: "sdb"
