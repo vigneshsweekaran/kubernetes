@@ -30,7 +30,7 @@ kubectl create -f storageclass.yaml
 ```
 kubectl create -f toolbox.yaml
 ```
-6. Exec inside the tools container to execute the ceph commands
+6. (Optional) Exec inside the tools container to execute the ceph commands
 ```
 kubectl exec -it pod_name -n rook-ceph -- sh
 ceph status
