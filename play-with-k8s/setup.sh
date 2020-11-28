@@ -8,8 +8,8 @@ fi
 
 # Configuring git username and mail
 if [[ "$*" == *git* ]]; then
-    git config user.email "play-with-kubernetes@gmail.com"
-    git config user.name "play-with-kubernetes"
+    git config --global user.email "play-with-kubernetes@gmail.com"
+    git config --global user.name "play-with-kubernetes"
 fi
 
 #Creating kubernetes cluster using kubeadm
