@@ -1,0 +1,15 @@
+1. Role - defines permission at namespace level
+
+2. ClusterRole - defines permission at cluster level
+
+3. RoleBinding - Binds Role, clusterRole with the user, group, ServiceAccount
+
+4. ClusterRoleBinding - Binds the Cluster Role with the user, group, ServiceAccount
+
+5. Aggrecated Clusterroles - You can aggregate several ClusterRoles into one combined ClusterRole. A controller, running as part of the cluster control plane, watches for
+ClusterRole objects with an aggregationRule set. The aggregationRule defines a label selector that the controller uses to match other ClusterRole objects that should be combined 
+into the rules field of this one.
+If you create a new ClusterRole that matches the label selector of an existing aggregated ClusterRole, that change triggers adding the new rules into the aggregated ClusterRole.
+Here is an example that adds rules to the "monitoring" ClusterRole, by creating another ClusterRole labeled rbac.example.com/aggregate-to-monitoring: true.
+
+6. 
