@@ -55,7 +55,7 @@ echo "export HEKETI_CLI_KEY=secretpassword" >> /etc/bashrc
 source /etc/bashrc
 ```
 
-### If not able to craete nodes, saying (gluserd not running in node)
+### If not able to add nodes, saying (Error: New Node doesn't have glusterd running)
 Fix: check whether passwordless ssh connection is working from heketi node(master node) to glusterfs nodes (worker nodes)
 
 ### Created PVC are not bounding (ERROR, node IP is not a valid one)
