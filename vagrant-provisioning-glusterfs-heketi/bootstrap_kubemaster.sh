@@ -29,12 +29,6 @@ groupadd -r heketi
 useradd -r -s /sbin/nologin -g heketi heketi
 mkdir {/var/lib,/etc,/var/log}/heketi
 
-# Create ssh passwordless access to Gluster nodes
-ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
-for node in kubeworker1 kubeworker2; do
-    sshpass -p "admin" ssh-copy-id -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /etc/heketi/heketi_key.pub root@$node
-done
-
 # Copying Heketi json
 cat <<EOF >/etc/heketi/heketi.json
 {
@@ -163,16 +157,18 @@ curl localhost:8080/hello; echo
 echo "export HEKETI_CLI_USER=admin" >> /etc/bashrc
 echo "export HEKETI_CLI_KEY=secretpassword" >> /etc/bashrc
 
-# Generating script for creating heketi cluster
-cat <<EOF >/home/vagrant/setup.sh
-# Creating Heketi cluster
-heketi-cli cluster create
-
-# Adding nodes to heketi cluster
-heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker1.example.com --storage-host-name=172.42.42.201
-heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker2.example.com --storage-host-name=172.42.42.202
-# Adding device to heketi cluster
-heketi-cli device add --name=< device_path > --node=< node1_id >
-heketi-cli device add --name= --node=< node2_id >
-
+# Creating storage class yaml file
+cat <<EOF >/home/vagrant/storage-class-glusterfs.yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: glusterfs
+  annotations:
+    storageclass.beta.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/glusterfs
+parameters:
+  resturl: "http://172.42.42.200:8080"
+  restuser: "admin"
+  restuserkey: "secretpassword"
+  volumetype: "replicate:2"
 EOF
