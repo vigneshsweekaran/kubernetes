@@ -12,6 +12,15 @@ vagrant halt kubeworker1 kubeworker2
 vagrant up kubeworker1 kubeworker2
 ```
 
+### Ssh into kubemaster and switch to root user
+```
+sudo su -
+ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
+for node in kubeworker1 kubeworker2; do
+    sshpass -p "admin" ssh-copy-id -i /etc/heketi/heketi_key.pub root@$node
+done
+```
+
 ### Creating Heketi cluster
 ```
 heketi-cli cluster create
