@@ -3,14 +3,14 @@
 # Update hosts file
 echo "[TASK 1] Update /etc/hosts file"
 cat >>/etc/hosts<<EOF
-172.42.42.100 kubemaster.example.com kubemaster
-172.42.42.101 kubeworker1.example.com kubeworker1
-172.42.42.102 kubeworker2.example.com kubeworker2
+172.42.42.200 kubemaster.example.com kubemaster
+172.42.42.201 kubeworker1.example.com kubeworker1
+172.42.42.202 kubeworker2.example.com kubeworker2
 EOF
 
 # Install docker from Docker-ce repository
 echo "[TASK 2] Install docker container engine"
-yum install -y -q yum-utils device-mapper-persistent-data lvm2 wget > /dev/null 2>&1
+yum install -y -q yum-utils device-mapper-persistent-data lvm2 wget sshpass git > /dev/null 2>&1
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo > /dev/null 2>&1
 yum install -y -q docker-ce >/dev/null 2>&1
 
