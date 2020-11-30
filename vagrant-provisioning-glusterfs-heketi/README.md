@@ -12,6 +12,15 @@ vagrant halt kubeworker1 kubeworker2
 vagrant up kubeworker1 kubeworker2
 ```
 
+### Ssh into kubemaster and switch to root user and generate ssh keys
+```
+sudo su -
+ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
+for node in kubeworker1 kubeworker2; do
+    sshpass -p "admin" ssh-copy-id -i /etc/heketi/heketi_key.pub root@$node
+done
+```
+
 ### Creating Heketi cluster
 ```
 heketi-cli cluster create
@@ -46,9 +55,10 @@ echo "export HEKETI_CLI_KEY=secretpassword" >> /etc/bashrc
 source /etc/bashrc
 ```
 
-### If not able to craete nodes, saying (gluserd not running in node)
+### If not able to add nodes, saying (Error: New Node doesn't have glusterd running)
 Fix: check whether passwordless ssh connection is working from heketi node(master node) to glusterfs nodes (worker nodes)
 
 ### Created PVC are not bounding (ERROR, node IP is not a valid one)
 Fix: While adding the node to heketi cluster pass ip-address in --storage-host-name parameter
+
 eg: heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker1.example.com --storage-host-name=172.42.42.201
