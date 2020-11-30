@@ -12,7 +12,7 @@ vagrant halt kubeworker1 kubeworker2
 vagrant up kubeworker1 kubeworker2
 ```
 
-### Ssh into kubemaster and switch to root user
+### Ssh into kubemaster and switch to root user and generate ssh keys
 ```
 sudo su -
 ssh-keygen -f /etc/heketi/heketi_key -t rsa -N ''
