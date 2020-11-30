@@ -26,7 +26,9 @@ heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kub
 ### Adding device to heketi cluster
 ```
 heketi-cli device add --name=< device_path > --node=< node1_id >
-heketi-cli device add --name= --node=< node2_id >
+heketi-cli device add --name=< device_path > --node=< node2_id >
+eg:
+ heketi-cli device add --name=/dev/sdb --node=< node1_id >
 ```
  
 # Issues
