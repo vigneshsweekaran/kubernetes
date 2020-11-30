@@ -12,7 +12,23 @@ vagrant halt kubeworker1 kubeworker2
 vagrant up kubeworker1 kubeworker2
 ```
 
-### 
+### Creating Heketi cluster
+```
+heketi-cli cluster create
+```
+
+### Adding nodes to heketi cluster
+```
+heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker1.example.com --storage-host-name=172.42.42.201
+heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker2.example.com --storage-host-name=172.42.42.202
+```
+
+### Adding device to heketi cluster
+```
+heketi-cli device add --name=< device_path > --node=< node1_id >
+heketi-cli device add --name= --node=< node2_id >
+```
+ 
 # Issues
 
 ### Error: Invalid JWT token: Token missing iss claim
