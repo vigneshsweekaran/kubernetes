@@ -60,4 +60,5 @@ Fix: check whether passwordless ssh connection is working from heketi node(maste
 
 ### Created PVC are not bounding (ERROR, node IP is not a valid one)
 Fix: While adding the node to heketi cluster pass ip-address in --storage-host-name parameter
+
 eg: heketi-cli node add --cluster=< cluster_id > --zone=1 --management-host-name=kubeworker1.example.com --storage-host-name=172.42.42.201
