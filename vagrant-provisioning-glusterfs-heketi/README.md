@@ -8,7 +8,7 @@
 ### Create additional disk in virtualbox with size 32 GB to each worker node
   ```
   vagrant halt kubeworker1 kubeworker2
-  ### Create amd attach the device to the worker nodes
+  # Create amd attach the device to the worker nodes
   vagrant up kubeworker1 kubeworker2
   ```
 
@@ -18,6 +18,7 @@
 ### Error: Invalid JWT token: Token missing iss claim
   Fix: username and password to be passed to heketi-cli or export the following environment variables.
   ```
-  export HEKETI_CLI_USER=admin
-  export HEKETI_CLI_KEY=secretpassword
+  echo "export HEKETI_CLI_USER=admin" >> /etc/bashrc
+  echo "export HEKETI_CLI_KEY=secretpassword" >> /etc/bashrc
+  source /etc/bashrc
   ```
