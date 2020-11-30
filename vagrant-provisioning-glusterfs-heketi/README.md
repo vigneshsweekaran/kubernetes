@@ -5,7 +5,7 @@
 vagrant up
 ```
 
-### Create additional disk in virtualbox with size 32 GB and attach to each worker node
+### Create additional disk in virtualbox with size 32 GB and attach to each worker node (minimum 2 additional disk is required )
 ```
 vagrant halt kubeworker1 kubeworker2
 # Create amd attach the device to the worker nodes
