@@ -4,5 +4,5 @@ metadata:
   name: nginx-data
 data:
   DATABASE_URL: "https://database.com"
-  DATABASE_USER: postgress
-  DATABASE_PASSWORD: "password"
+  DATABASE_USER: "mysql"
+  DATABASE_PASSWORD: "Securepassword"
