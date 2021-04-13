@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jfrog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jfrog
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: jfrog
+      labels:
+        name: jfrog
+    spec:
+      containers:
+        - name:  jfrog
+          image: releases-docker.jfrog.io/jfrog/artifactory-oss:latest
+          ports:
+            - name: ui
+              containerPort: 8081
+            - name: backend
+              containerPort: 8082
+          # volumeMounts:
+          # - name: jfrog-data
+          #   mountPath: "/var/jfrog_home"
+#            subPath: "plugins"
+#          - name: jfrog-data
+#            mountPath: "/var/jfrog_home/users"
+#           subPath: "users"
+#          - name: jfrog-data
+#           mountPath: "/var/jfrog_home/jobs"
+#            subPath: "jobs"
+#          - name: jfrog-data
+#            mountPath: "/var/jfrog_home/secrets"
+#            subPath: "secrets"
+          resources:
+            limits:
+              memory: 1536Mi
+            requests:
+              memory: 1024Mi
+      # volumes:
+      # - name: jfrog-data
+      #   persistentVolumeClaim:
+      #     claimName: jfrog
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jfrog
+  labels:
+    name: jfrog
+spec:
+  ports:
+    - name: ui
+      port: 8081
+      targetPort: 8081
+    - name: backend
+      port: 8082
+      targetPort: 8082
+  selector:
+    name: jfrog
+  type: ClusterIP
