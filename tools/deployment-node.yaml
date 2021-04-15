@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: node
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: node
+      labels:
+        name: node
+    spec:
+      containers:
+        - name:  node
+          image: node:14
+          args: ["sleep", "infinity"]
+          resources:
+            limits:
+              memory: 1536Mi
+            requests:
+              memory: 1024Mi
